@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   width: 100%;
   max-width: 800px;
@@ -14,6 +18,7 @@
   padding: 20px 35px;
   border: none;
   font-size: 30px;
+  cursor: pointer;
 }
 
 .btn:disabled {
@@ -29,6 +34,8 @@
 .quotecontainer {
   margin: 50px auto 50px;
   padding: 35px;
+  width: 100%;
+  text-align: center;
   background: #647175;
   grid-area: qtbox;
 }
