@@ -7,7 +7,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      quote: ''
+      quote: '',
+      author: ''
     }
   }
 
@@ -22,11 +23,13 @@ class App extends Component {
     $.getJSON( url, json => {
       $(".btn.newquote").prop("disabled", false)
       let quote = json[0].content
+      let author = "- " + json[0].title
       let len = quote.length
+      // Check for tweetable length
       if (len > 140) {
         this.getQuote()
       } else {
-        this.setState( {quote} )
+        this.setState( {quote, author} )
       }
     })
   }
@@ -46,7 +49,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div id="quote" dangerouslySetInnerHTML={{__html: this.state.quote}}></div>
+        <h1>Qwotez</h1>
+        <div className="quotecontainer">
+          <div id="quote" dangerouslySetInnerHTML={{__html: this.state.quote}}></div>
+          <div id="author"><em>{this.state.author}</em></div>
+        </div>
+
         <Button onclick={this.getQuote} text="Get New Quote" btntype="newquote"/>
         <Button onclick={this.tweetQuote} text="Tweet Quote" btntype="tweetquote"/>
       </div>
