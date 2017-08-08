@@ -1,5 +1,25 @@
 .App {
+  width: 100%;
   text-align: center;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+}
+
+.btn:disabled {
+  background: #777;
+}
+
+.tweetquote {
+  background: #77B3B2;
+  color: #f3f3f1;
+}
+
+.newquote {
+  background: #C7A952;
+  color: #f3f3f1;
 }
 
 .App-logo {
