@@ -1,39 +1,39 @@
 import React, { Component } from 'react';
 import Button from './Components/Button'
-import axios from 'axios'
+import $ from 'jquery'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      number: 5,
-      quote: null
+      quote: ''
     }
-    this.getThing()
   }
 
-  getThing = () => {
-    axios
-      .get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=30')
-      .then(result => {
-        console.log(result)
-        let rand = this.getRandomInt(0, 31)
-        let len = result.data[rand].content.length
-        this.setState({quote: result.data[rand].content})
-      })
+  componentDidMount() {
+    this.getQuote()
   }
 
-  getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  getQuote = () => {
+    let url = 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=?'
+    this.setState( {quote: "<p>Loading...</p>"} )
+    $.getJSON( url, json => {
+      console.log(json)
+      let quote = json[0].content
+      let len = quote.length
+      if (len > 150) {
+        this.getQuote()
+      } else {
+        this.setState( {quote} )
+      }
+    })
   }
 
   render() {
     return (
       <div>
         <div dangerouslySetInnerHTML={{__html: this.state.quote}}></div>
-        <Button onclick={this.getThing} text="Get JSON"/>
+        <Button onclick={this.getQuote} text="Get New Quote"/>
       </div>
     );
   }
