@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   getQuote = () => {
-    let url = 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=?'
+    let url = 'https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=?'
     $(".btn.newquote").prop("disabled", true)
     this.setState( {quote: "<p>Loading...</p>"} )
     $.getJSON( url, json => {
