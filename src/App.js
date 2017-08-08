@@ -19,7 +19,7 @@ class App extends Component {
   getQuote = () => {
     let url = 'https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=?'
     $(".btn.newquote").prop("disabled", true)
-    this.setState( {quote: "<p>Loading...</p>"} )
+    this.setState( {quote: "<p>Loading...</p>", author: ""} )
     $.getJSON( url, json => {
       $(".btn.newquote").prop("disabled", false)
       let quote = json[0].content
@@ -50,13 +50,16 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Qwotez</h1>
+        <div className="nqbtn-container">
+          <Button onclick={this.getQuote} text="Get New Quote" btntype="newquote"/>
+        </div>
+        <div className="tqbtn-container">
+          <Button onclick={this.tweetQuote} text="Tweet Quote" btntype="tweetquote"/>
+        </div>
         <div className="quotecontainer">
           <div id="quote" dangerouslySetInnerHTML={{__html: this.state.quote}}></div>
           <div id="author"><em>{this.state.author}</em></div>
         </div>
-
-        <Button onclick={this.getQuote} text="Get New Quote" btntype="newquote"/>
-        <Button onclick={this.tweetQuote} text="Tweet Quote" btntype="tweetquote"/>
       </div>
     );
   }
