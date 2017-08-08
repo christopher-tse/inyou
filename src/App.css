@@ -1,6 +1,8 @@
 .App {
   width: 100%;
+  max-width: 800px;
   text-align: center;
+  margin: 0 auto
 }
 
 .btn {
@@ -10,6 +12,10 @@
 
 .btn:disabled {
   background: #777;
+}
+
+.quotecontainer {
+  margin: 50px auto 50px
 }
 
 .tweetquote {
