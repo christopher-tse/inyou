@@ -11,6 +11,8 @@
   grid-template-areas: "title title"
                        "nqbtn tqbtn"
                        "qtbox qtbox";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20% 20% 60%;
 
 }
 
