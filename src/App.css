@@ -10,9 +10,11 @@
   grid-gap: 10px;
   grid-template-areas: "title title"
                        "nqbtn tqbtn"
-                       "qtbox qtbox";
+                       "qtbox qtbox"
+                       "footer footer";
+
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 20% 20% 60%;
+  grid-template-rows: 15% 20% 55% 10%;
 
 }
 
@@ -27,10 +29,13 @@
   background: #777;
 }
 
-.App h1 {
+header {
+  grid-area: title;
+}
+
+header h1 {
   text-align: center;
   font-size: 60px;
-  grid-area: title;
 }
 
 .quotecontainer {
@@ -55,6 +60,10 @@
   font-size: 30px;
 }
 
+#author.no-margin {
+  margin-top: 0;
+}
+
 .tqbtn-container {
   grid-area: tqbtn;
   text-align: center;
@@ -75,23 +84,6 @@
   color: #f3f3f1;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
+.spinning-icon {
   height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
