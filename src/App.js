@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from './Components/Button'
 import $ from 'jquery'
 import './App.css'
+import icon from './Spinner.svg'
 
 class App extends Component {
   constructor(props) {
@@ -19,8 +20,10 @@ class App extends Component {
   getQuote = () => {
     let url = 'https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=?'
     $(".btn.newquote").prop("disabled", true)
-    this.setState( {quote: "<p>Loading...</p>", author: ""} )
+    $("#author").addClass("no-margin")
+    this.setState( {quote: `<img src=${icon} class="App-logo">`, author: ""} )
     $.getJSON( url, json => {
+      $("#author").removeClass("no-margin")
       $(".btn.newquote").prop("disabled", false)
       let quote = json[0].content
       let author = "- " + json[0].title
@@ -36,7 +39,7 @@ class App extends Component {
 
   tweetQuote = () => {
     let quote = $("#quote>p").text()
-    let url = "https://twitter.com/intent/tweet?text=" + quote
+    let url = "https://twitter.com/intent/tweet?text=" + quote + this.state.author
 
     let win = window.open(url)
     if (win) {
@@ -48,8 +51,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>Qwotez</h1>
+      <main className="App">
+        <header><h1>Qwotez</h1></header>
         <div className="nqbtn-container">
           <Button onclick={this.getQuote} text="Get New Quote" btntype="newquote"/>
         </div>
@@ -60,7 +63,7 @@ class App extends Component {
           <div id="quote" dangerouslySetInnerHTML={{__html: this.state.quote}}></div>
           <div id="author"><em>{this.state.author}</em></div>
         </div>
-      </div>
+      </main>
     );
   }
 }
