@@ -10,11 +10,10 @@
   grid-gap: 10px;
   grid-template-areas: "title title"
                        "nqbtn tqbtn"
-                       "qtbox qtbox"
-                       "footer footer";
+                       "qtbox qtbox";
 
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 15% 20% 55% 10%;
+  grid-template-rows: 15% 20% 65%;
 
 }
 
